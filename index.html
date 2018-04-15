@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Learn Border Radius | Jennifer Bland</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="calc-frame">
+                <div class="calc-result-frame">
+                    <div class="calc-result-input">0</div>
+                </div>
+                <div class="flex-row">
+                    <div class="calc-logo">BLAND INSTRUMENTS</div>
+                    <button class="calc-on">ON</button>
+                </div>
+        
+                <div class="flex-row">
+                    <button class="calc-btn">7</button>
+                    <button class="calc-btn">8</button>
+                    <button class="calc-btn">9</button>
+                    <button class="calc-btn">X</button>
+                </div>
+                <div class="flex-row">
+                    <button class="calc-btn">4</button>
+                    <button class="calc-btn">5</button>
+                    <button class="calc-btn">6</button>
+                    <button class="calc-btn ">-</button>
+                </div>
+                <div class="flex-row">
+                    <button class="calc-btn">1</button>
+                    <button class="calc-btn">2</button>
+                    <button class="calc-btn">3</button>
+                    <button class="calc-btn">+</button>
+                </div>
+                <div class="flex-row">
+                    <button class="calc-btn flex-double">0</button>
+                    <button class="calc-btn">.</button>
+                    <button class="calc-btn">/</button>
+                </div>
+                
+                <div class="flex-row">
+                <button class="calc-btn calc-enter">ENTER</button>
+                </div>
+        
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+        <script>
+            let num1 = '';
+            let num2 = '';
+            let operator = '';
+            let total = '';
+
+            $(document).ready(function() {
+                $('button').on('click', function(e) {
+                    let btn = e.target.innerHTML;
+                    if (btn >= '0' && btn <= '9') {
+                        handleNumber(btn);
+                    } else {
+                        handleOperator(btn);
+                    }
+                });
+            });
+
+            function handleNumber(num) {
+                if (num1 === '') {
+                    num1 = num;
+                } else {
+                    num2 = num;
+                }
+                displayButton(num);
+            }
+
+            function handleOperator(oper) {
+                if (operator === '') {
+                    operator = oper;
+                } else {
+                    handleTotal();
+                    operator = oper;
+                }
+            }
+
+            function handleTotal() {
+                console.log('x', operator);
+                switch (operator) {
+                    case '+':
+                        total = +num1 + +num2;
+                        displayButton(total);
+                        break;
+                    case '-':
+                        total = +num1 - +num2;
+                        displayButton(total);
+                        break;
+                    case '/':
+                        total = +num1 / +num2;
+                        displayButton(total);
+                        break;
+                    case 'X':
+                        total = +num1 * +num2;
+                        displayButton(total);
+                        break;
+                }
+                updateVariables();
+            }
+
+            function displayButton(btn) {
+                $('.calc-result-input').text(btn);
+            }
+
+            function updateVariables() {
+                num1 = total;
+                num2 = '';
+            }
+        </script>
+    </body>
+</html>
