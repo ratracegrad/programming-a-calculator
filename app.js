@@ -33,7 +33,6 @@ function handleOperator(oper) {
 }
 
 function handleTotal() {
-    console.log('x', operator);
     switch (operator) {
         case '+':
             total = +num1 + +num2;
