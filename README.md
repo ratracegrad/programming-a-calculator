@@ -1,1 +1,2 @@
-# learn-javascript-by-building-a-calculator
+# Programming a Calculator
+
